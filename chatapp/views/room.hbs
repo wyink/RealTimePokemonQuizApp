@@ -1,33 +1,46 @@
 <div class="container">
     <div class="row">
-        <h1>Node Chat チャットルーム</h1>
+        <h1>Pokemon Quiz</h1>
     </div>
     <div class="row">
         <form method="post" action="/">
             <div class="room-login_user">
-                ログインユーザ：{{userName}}さん
+                挑戦者：{{userName}}さん
                 <input id="userName" type="hidden" value="{{userName}}">
             </div>
+            <div class="quizStart">
+                <input type="button" value="QuiZ Start!" class="btn btn-info common-button room-exit_button" onclick="fetchPokeInfo();">
+            </div>
+            <div class="Question">
+                <p>問題をここに表示する</p>
+            </div>
             <div class="room-message">
-                <textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
+                <textarea id="message" rows="2" class="room-message_textarea" placeholder="答えを入力してください"></textarea>
             </div>
             <div class="room-submit">
-                <input type="button" value="投稿" class="common-button room-publish_button" onclick="publish();">
-                <input type="button" value="メモ" class="common-button room-memo_button" onclick="memo();">
+                <input type="hidden" value="投稿" class="common-button room-publish_button" onclick="publish();">
+                <input type="hidden" value="メモ" class="common-button room-memo_button" onclick="memo();">
+            </div>
+            <div class="Answer">
+                <input id="Answer" type="button" value="解答" class="btn btn-info common-button room-exit_button" onclick="AnsComp();">
             </div>
             <div class="room-thread">
                 <div id="thread"></div>
             </div>
             <div class="room-exit">
-                <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
-            </div>
-            <div class="room-exit">
-                <input type="button" value="ポケモん" class="common-button room-exit_button" onclick="fetchPokeInfo();">
+                <input type="button" value="退室する" class="btn btn-warnin common-button room-exit_button" onclick="exit();">
             </div>
         </form>
     </div>
 </div>
-
+<script>
+    function AnsComp(){
+        //入力した解答とApiから取得した解答を照らし合わせる
+        const answer = $('#message').val();
+        if(answer )
+        console.log(answer);
+    }
+</script>
 <script src="/javascripts/startApi.js"></script>
 <script src="/javascripts/socket.js"></script>
 <script src="/javascripts/enter.js"></script>
