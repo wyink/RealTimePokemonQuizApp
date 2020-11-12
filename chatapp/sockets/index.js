@@ -14,5 +14,8 @@ module.exports = function (server) {
 
         // 退室モジュールの呼出
         require('./exit')(socket);
+
+        //fetchPokeInfoモジュールの呼び出し
+        require('./fetchPokeInfo')(socket, io);
     });
 };
