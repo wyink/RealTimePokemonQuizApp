@@ -9,7 +9,7 @@
                 <input id="userName" type="hidden" value="{{userName}}">
             </div>
             <div class="quizStart">
-                <input type="button" value="QuiZ Start!" class="btn btn-info common-button room-exit_button" onclick="fetchPokeInfo();">
+                <input type="button" value="QuiZ Start!" class="btn btn-info common-button room-exit_button" onclick="question();">
             </div>
             <div class="Question">
                 <p>問題をここに表示する</p>
@@ -24,15 +24,12 @@
             <div class="Answer">
                 <input id="Answer" type="button" value="解答" class="btn btn-info common-button room-exit_button" onclick="AnsComp();">
             </div>
-            <div class="room-thread">
-                <div id="thread"></div>
-            </div>
             <div class="room-exit">
                 <input type="button" value="退室する" class="btn btn-warnin common-button room-exit_button" onclick="exit();">
             </div>
-            <div>
+            <div id="thread">
                 <div class="poke-img">
-                    <img src="/pokemon.json/images/001.png" alt="">
+                    <img src="https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/001.png" alt="">
                 </div>
             </div>
         </form>

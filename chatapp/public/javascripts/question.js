@@ -1,12 +1,30 @@
-let PokeImgData = "";
+'use strict';
+// let PokeImgData = "";
+const pokemonJsonUrl = "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/";
 
-socket.on('receiveApiData', function (data) {
-    //APIからの情報取得
-    $('#thread').prepend(PokeId = data.id);
-    //ゼロパディング処理
-    let ret = ( '000' + PokeId ).slice( -3 );
-    //imgタグを表示
-    PokeImgData.id
-    $('.class').apend("<img class='poke_img' src='" +  + "' alt='' >");
-});
 
+function question() {
+    console.log("start question.js");
+    // 投稿内容を送信
+    socket.emit('fetchPokeApiRequestEvent');
+    socket.on('receivePokeApiData', function (data) {
+        console.log(data);
+
+        //APIからの情報取得
+        // $('#thread').prepend(PokeId = data.id);
+        const pokeId = data.id;
+        console.log("pokeId", pokeId);
+
+        //ゼロパディング処理
+        let ret = ( '000' + pokeId ).slice( -3 );
+        console.log("ret:", ret);
+
+        const pokeImgUrl = pokemonJsonUrl + String(ret) + ".png";
+        console.log(pokeImgUrl);
+        //imgタグを表示
+
+        $('#thread').prepend("<img class='poke-img' src='" + pokeImgUrl + "' alt='' >");
+    });
+
+    return false;
+}
