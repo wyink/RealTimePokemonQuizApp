@@ -85,9 +85,7 @@ div {
 /*
  * ポケモン画像のCSS
  */
- .poke_img{}
-
- .poke-img > img{
+ .poke-img {
      width: 100px;
      height: 100px;
  }
