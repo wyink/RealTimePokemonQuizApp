@@ -17,5 +17,9 @@ module.exports = function (server) {
 
         //fetchPokeInfoモジュールの呼び出し
         require('./fetchPokeInfo')(socket, io);
+
+        //answerCompモジュールの呼び出し
+        require('./answerComp')(socket, io);
+        
     });
 };

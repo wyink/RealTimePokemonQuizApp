@@ -1,5 +1,7 @@
 'use strict';
 
+
+//投稿ボタンは現段階では使用しない。
 module.exports = function (socket, io) {
     // 投稿メッセージを送信する
     socket.on('sendContentEvent', function (data) {
@@ -7,3 +9,5 @@ module.exports = function (socket, io) {
         io.sockets.emit('receiveContentEvent',data);
     });
 };
+
+

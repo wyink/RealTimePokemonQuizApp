@@ -9,20 +9,22 @@
                 <input id="userName" type="hidden" value="{{userName}}">
             </div>
             <div class="quizStart">
-                <input type="button" value="QuiZ Start!" class="btn btn-info common-button room-exit_button" onclick="question();">
+                <input type="button" value="QuiZ Start!" id='startbtn' class="btn btn-info common-button" onclick="question();">
             </div>
-            <div class="Question">
-                <p>問題をここに表示する</p>
+            <div id="Question">
+                <div id="QuestionSentence">問題 : このポケモンの名前は？ </div>
+                <div class="question"></div>
+                {{!-- <img class="poke-img" src="https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/001.png" alt=""> --}}
             </div>
             <div class="room-message">
-                <textarea id="message" rows="2" class="room-message_textarea" placeholder="答えを入力してください"></textarea>
+                <textarea id="message" rows="2" class="room-message_textarea" placeholder="答えを入力しよう"></textarea>
             </div>
             <div class="room-submit">
-                <input type="hidden" value="投稿" class="common-button room-publish_button" onclick="publish();">
+                <input type="hidden" value="投稿" class="common-button room-publish_button" onclick="_publish();">
                 <input type="hidden" value="メモ" class="common-button room-memo_button" onclick="memo();">
             </div>
             <div class="Answer">
-                <input id="Answer" type="button" value="解答" class="btn btn-info common-button room-exit_button" onclick="AnsComp();">
+                <input id="Answer" type="button" value="解答" class="btn btn-info common-button room-exit_button" onclick="answerComp();">
             </div>
             <div class="room-exit">
                 <input type="button" value="退室する" class="btn btn-warnin common-button room-exit_button" onclick="exit();">
@@ -35,17 +37,11 @@
         </form>
     </div>
 </div>
-<script>
-    function AnsComp(){
-        //入力した解答とApiから取得した解答を照らし合わせる
-        const answer = $('#message').val();
-        if(answer )
-        console.log(answer);
-    }
-</script>
+
+<script src="/javascripts/socket.js"></script>
+<script src="/javascripts/answerComp.js"></script>
 <script src="/javascripts/startApi.js"></script>
 <script src="/javascripts/question.js"></script>
-<script src="/javascripts/socket.js"></script>
 <script src="/javascripts/enter.js"></script>
 <script src="/javascripts/publish.js"></script>
 <script src="/javascripts/memo.js"></script>
