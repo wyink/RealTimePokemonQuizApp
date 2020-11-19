@@ -12,6 +12,8 @@ module.exports = function (socket, io) {
 
         // グローバル変数に今問題にしているポケモンIDを記録
         nowPokeId = pokeId;
+        // 問題がスタートしたことを記録
+        startedQuestion = true;
 
         const options = {
             url: `https://pokeapi.co/api/v2/pokemon-species/${pokeId}`,
