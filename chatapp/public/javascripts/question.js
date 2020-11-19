@@ -13,7 +13,6 @@ function startQuestion() {
         const hintButton = `<input type="button" value="Please Hint!" id='hintbtn' class="btn btn-info common-button" onclick="hint();">`
         $('.quizStart').append(hintButton);
         socket.emit('fetchPokeApiRequestEvent');
-        // requestNewQuestion();
         questinCheck = false;
     }
 };
@@ -28,7 +27,6 @@ socket.on('receivePokeApiData', function (data) {
     console.log(data);
 
     //APIからの情報取得
-    // $('#thread').prepend(PokeId = data.id);
     const pokeId = data.id;
     console.log("pokeId", pokeId);
 
