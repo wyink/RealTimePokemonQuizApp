@@ -18,7 +18,12 @@ socket.on('receiveAnswer', function (judge) {
     const color = judge ? "red" : "blue";
     const userName = $('#userName').val();
 
-    if(judge) socket.emit("fetchPokeApiRequestEvent");
+    if(judge) {
+        // 新しい問題の要求
+        socket.emit("fetchPokeApiRequestEvent");
+
+
+    }
     else alert("不正解です。もう一度入力してください");
 
     //テキストエリアをクリアする

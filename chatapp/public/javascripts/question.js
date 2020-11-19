@@ -4,48 +4,33 @@ const pokemonJsonUrl = "https://raw.githubusercontent.com/fanzeyi/pokemon.json/m
 let genreIn = '';
 let firstName = '';
 let nameLength = '';
-let questinCheck = true;
+// let questinCheck = true;
 let hintCheck = true;
 let addHintCheck = true;
-
-function startQuestion() {
-    if(questinCheck){
-        const hintButton = `<input type="button" value="Please Hint!" id='hintbtn' class="btn btn-info common-button" onclick="hint();">`
-        $('.quizStart').append(hintButton);
-        socket.emit('fetchPokeApiRequestEvent');
-        questinCheck = false;
-    }
-};
-
-function requestNewQuestion() {
-    console.log("requestQuestion");
-    socket.emit('fetchPokeApiRequestEvent');
-    return false;
-}
 
 socket.on('receivePokeApiData', function (data) {
     console.log(data);
 
     //APIからの情報取得
     const pokeId = data.id;
-    console.log("pokeId", pokeId);
+    // console.log("pokeId", pokeId);
 
     //ヒントとしてジャンルを取得
     genreIn = data.genera[0].genus;
-    console.log("genre", genreIn);
+    // console.log("genre", genreIn);
 
     //追加ヒント
     nameLength = data.names[0].name;
     firstName = data.names[0].name.slice(0,1);
-    console.log("name", firstName);
-    console.log("number", nameLength.length);
+    // console.log("name", firstName);
+    // console.log("number", nameLength.length);
 
     //ゼロパディング処理
     let ret = ( '000' + pokeId ).slice( -3 );
-    console.log("ret:", ret);
+    // console.log("ret:", ret);
 
     const pokeImgUrl = pokemonJsonUrl + String(ret) + ".png";
-    console.log(pokeImgUrl);
+    // console.log(pokeImgUrl);
 
     const questionArea = `<div class='question'><img class='poke-img' src='${pokeImgUrl}' alt='' ></div>` ;
 
@@ -56,29 +41,22 @@ socket.on('receivePokeApiData', function (data) {
 
 function hint(){
     if(hintCheck){
-        console.log(genreIn);
         const hintArea = `<p class="hintText">このポケモンの属性は「${genreIn}」です！</p>`;
-        $('#QuestionSentence').append(hintArea);
-        const addhintButton = `<input type="button" value="Please Add Hint!" id='hintbtn' class="btn btn-info common-button" onclick="addHint();">`
-        $('.quizStart').append(addhintButton);
-        hintCheck = false;
-        return false;
-    }else{
-        $('.hintText').remove();
-        hintCheck = true;
+        $('.hint').append(hintArea);
     }
+    else {
+        $('.hintText').remove();
+    }
+    hintCheck = !hintCheck;
 }
 
 function addHint(){
     if(addHintCheck){
-        console.log(nameLength);
-        console.log(firstName);
         const addHintArea = `<p class="addHintText">このポケモンは${nameLength.length}文字で、最初の文字は「${firstName}」です！</p>`;
-        $('#QuestionSentence').append(addHintArea);
-        addHintCheck = false;
-        return false;
+        $('.hint').append(addHintArea);
     }else{
         $('.addHintText').remove();
-        addHintCheck = true;
     }
+    addHintCheck = !addHintCheck;
+
 };

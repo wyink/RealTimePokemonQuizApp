@@ -5,15 +5,16 @@
     <div class="row">
         <form method="post" action="/">
             <div class="room-login_user">
-                挑戦者：{{userName}}さん
+                <p style="font-size: larger;">挑戦者：<b>{{userName}}</b>さん</p>
                 <input id="userName" type="hidden" value="{{userName}}">
             </div>
-            <div class="quizStart">
-                <input type="button" value="Please Hint!" id='hintbtn' class="btn btn-info common-button" onclick="hint();">
+            <div class="hint-area">
+                <input type="button" value="1つ目のヒント（ポケモンの属性）" id='hintbtn' class="btn btn-info common-button" onclick="hint();">
+                <input type="button" value="2つ目のヒント（最初の文字）" id='hintbtn' class="btn btn-info common-button" onclick="addHint();">
+                <div class="hint"></div>
             </div>
             <div id="Question">
-                <div id="QuestionSentence">問題 : このポケモンの名前は？ </div>
-                <div class="question"></div>
+                <div id="QuestionSentence"><b style="font-size: large; color:rgb(46, 43, 43)">問題 : このポケモンの名前は？</b></div>
             </div>
             <div class="room-message">
                 <textarea id="message" rows="2" class="room-message_textarea" placeholder="答えを入力しよう"></textarea>
