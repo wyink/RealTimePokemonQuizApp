@@ -32,9 +32,6 @@ module.exports = function(socket, io){
                 judge = false;
             }
 
-            // // フロント側全員にデータを送信
-            // io.sockets.emit('receiveAnswer', judge);
-
             // 判定結果を回答者に返す
             socket.emit("receiveAnswer", judge);
 

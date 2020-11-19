@@ -5,6 +5,6 @@ module.exports = function (socket, io) {
     socket.on('enterUserEvent', function (data) {
         // 入室しましたメッセージ
         io.sockets.emit("receiveMessageEvent", data);
-        console.log("data: ", data);
+        console.log(data);
     });
 };

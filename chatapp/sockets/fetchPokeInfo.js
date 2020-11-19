@@ -59,10 +59,10 @@ module.exports = function (socket, io) {
 
         webclient(options, (error, response, body)=>{
             const pokeInfo = JSON.parse(response.body);
-            console.log(pokeInfo);
+            // console.log(pokeInfo);
             console.log(pokeInfo.names[0].name);
             // フロント側にデータを送信
-            io.sockets.emit('receivePokeApiData', pokeInfo);
+            socket.emit('receivePokeApiData', pokeInfo);
             console.log("complete send pokeInfo");
         });
 
