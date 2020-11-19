@@ -20,6 +20,5 @@ module.exports = function (server) {
 
         //answerCompモジュールの呼び出し
         require('./answerComp')(socket, io);
-        
     });
 };
