@@ -15,22 +15,25 @@ function answerComp(){
 
 socket.on('receiveAnswer', function (judge) {
     let display = ''; //正解/不正解
+    let color = "red";
     if(judge){
         //次の問題へと進む
         display = "正解";
+        color = "red";
         question();
 
     }else{
         //もういちど解答を入力するよう促す
         display = "不正解";
+        color = "blue";
         alert("不正解です。もう一度入力してください");
     }
-    
+
     //テキストエリアをクリアする
     $('#message').val('');
 
     const userName = $('#userName').val();
-    $('#thread').prepend(`<p> ${userName}さんが${display}しました。</p>`);
+    $('#thread').prepend(`<p> ${userName}さんが<font color=${color}>${display}</font>しました。</p>`);
 });
 
 
