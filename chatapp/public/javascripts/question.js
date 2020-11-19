@@ -5,6 +5,8 @@ const pokemonJsonUrl = "https://raw.githubusercontent.com/fanzeyi/pokemon.json/m
 
 function question() {
     console.log("start question.js");
+    // 問題がスタートしたことを記録
+    startedQuestion = true;
     // 投稿内容を送信
     socket.emit('fetchPokeApiRequestEvent');
     return false;
