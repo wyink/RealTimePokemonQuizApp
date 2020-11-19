@@ -14,25 +14,33 @@ function answerComp(){
 }
 
 socket.on('receiveAnswer', function (judge) {
-    let display = ''; //正解/不正解
-    let color = "red";
-    if(judge){
-        //次の問題へと進む
-        display = "正解";
-        color = "red";
-        requestQuestion();
-    }else{
-        //もういちど解答を入力するよう促す
-        display = "不正解";
-        color = "blue";
-        alert("不正解です。もう一度入力してください");
-    }
+    let display = judge ? "正解" : "不正解"; //正解/不正解
+    const color = judge ? "red" : "blue";
+    const userName = $('#userName').val();
+
+    if(judge) socket.emit("fetchPokeApiRequestEvent");
+    else alert("不正解です。もう一度入力してください");
 
     //テキストエリアをクリアする
     $('#message').val('');
 
-    const userName = $('#userName').val();
-    $('#thread').prepend(`<p> ${userName}さんが<font color=${color}>${display}</font>しました。</p>`);
+    const resultData = {
+        display: display,
+        color: color,
+        respondent: userName,
+        judge: judge
+    };
+
+    // 回答の結果をみんなに反映するようにリクエスト
+    socket.emit("requestUpdateResult", resultData);
+
 });
 
+// 回答結果の反映
+socket.on("updateResultEvent", function(resultData) {
+    const respondent = resultData.respondent;
+    const color = resultData.color;
+    const display = resultData.display;
+    $('#thread').prepend(`<p> ${respondent}さんが<font color=${color}>${display}</font>しました。</p>`);
+});
 

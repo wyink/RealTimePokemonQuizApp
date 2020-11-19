@@ -6,8 +6,8 @@ const webclient = require('request');
 module.exports = function(socket, io){
 
     socket.on('sendAnswer',function(data){
-        
-        const pokeId = data.ANSID ;
+
+        const pokeId = data.ANSID;
 
         //出題ソースと同じAPIにアクセスして丸ごとデータを取得
         const options = {
@@ -32,11 +32,20 @@ module.exports = function(socket, io){
                 judge = false;
             }
 
-            // フロント側にデータを送信
-            io.sockets.emit('receiveAnswer',judge);
+            // // フロント側全員にデータを送信
+            // io.sockets.emit('receiveAnswer', judge);
+
+            // 判定結果を回答者に返す
+            socket.emit("receiveAnswer", judge);
 
         });
 
-    })
+    });
+
+    // 回答者から回答結果の反映をするためのリクエストを待つ
+    socket.on("requestUpdateResult", function(resultData) {
+        // 参加者全員に回答結果の反映をするための情報を送る
+        io.sockets.emit("updateResultEvent", resultData);
+    });
 
 };
