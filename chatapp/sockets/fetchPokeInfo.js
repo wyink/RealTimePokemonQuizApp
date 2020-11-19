@@ -10,6 +10,9 @@ module.exports = function (socket, io) {
         const pokeId = Math.floor(Math.random() * 809);
         console.log(`pokeId: ${pokeId}`);
 
+        // グローバル変数に今問題にしているポケモンIDを記録
+        nowPokeId = pokeId;
+
         const options = {
             url: `https://pokeapi.co/api/v2/pokemon-species/${pokeId}`,
             method: "GET",
