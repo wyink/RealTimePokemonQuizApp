@@ -2,14 +2,17 @@
 
 // 解答を送信する
 function answerComp(){
-    const answer = $('#message').val() ;
+    /*
+    //フロント側の画像からpokeIdを取得する
+    =>フロントから取得せず、バックで'global.nowPokeId'で保持する.
     const answerPokesrc = $('#Question > .question').children('.poke-img').attr('src');
     const regex = /^https.+\/(\d+)\.png$/;
     const answerPokeId = (answerPokesrc.match(regex))[1];
-    socket.emit('sendAnswer',{
-        ANSWER:answer,
-        ANSID:answerPokeId
-    });
+    */
+    
+    //ユーザー入力の解答を送信する
+    const userAnswer = $('#message').val() ;
+    socket.emit('sendAnswer',userAnswer);
     return false;
 }
 

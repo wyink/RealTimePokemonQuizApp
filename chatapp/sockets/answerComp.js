@@ -5,9 +5,9 @@ const webclient = require('request');
 //解答の答え合わせ
 module.exports = function(socket, io){
 
-    socket.on('sendAnswer',function(data){
+    socket.on('sendAnswer',function(userAnswer){
 
-        const pokeId = data.ANSID;
+        const pokeId = global.nowPokeId;
 
         //出題ソースと同じAPIにアクセスして丸ごとデータを取得
         const options = {
@@ -26,7 +26,7 @@ module.exports = function(socket, io){
             const truePokeName = pokeInfo.names[0].name;
 
             let judge = false; //正解していた場合はtrue,不正解はfalse
-            if(truePokeName == data.ANSWER){
+            if(truePokeName == userAnswer){
                 judge = true;
             }else{
                 judge = false;
