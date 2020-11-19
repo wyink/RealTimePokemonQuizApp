@@ -20,8 +20,7 @@ socket.on('receiveAnswer', function (judge) {
         //次の問題へと進む
         display = "正解";
         color = "red";
-        question();
-
+        requestQuestion();
     }else{
         //もういちど解答を入力するよう促す
         display = "不正解";
