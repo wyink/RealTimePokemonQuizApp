@@ -12,14 +12,14 @@ function startQuestion() {
     if(questinCheck){
         const hintButton = `<input type="button" value="Please Hint!" id='hintbtn' class="btn btn-info common-button" onclick="hint();">`
         $('.quizStart').append(hintButton);
-        requestQuestion();
+        socket.emit('fetchPokeApiRequestEvent');
+        // requestNewQuestion();
         questinCheck = false;
     }
 };
 
-function requestQuestion() {
-    console.log("start question.js");
-    // 投稿内容を送信
+function requestNewQuestion() {
+    console.log("requestQuestion");
     socket.emit('fetchPokeApiRequestEvent');
     return false;
 }
