@@ -55,11 +55,9 @@ module.exports = function(socket, io){
 
             webclient(options, (error, response, body)=>{
                 const pokeInfo = JSON.parse(response.body);
+                // 正解のポケモンの情報を更新
                 resultData.pokeName = pokeInfo.names[0].name;
-                console.log("正解のポケモンは・・・", pokeInfo.names[0].name);
-                console.log("正解のポケモンは・・・", resultData.pokeName);
                 // 参加者全員に回答結果の反映をするための情報を送る
-                console.log("resultData" ,resultData);
                 io.sockets.emit("updateResultEvent", resultData);
             });
         } else {
