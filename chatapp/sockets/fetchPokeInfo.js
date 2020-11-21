@@ -11,6 +11,7 @@ module.exports = function (socket, io) {
         console.log(`pokeId: ${pokeId}`);
 
         // グローバル変数に今問題にしているポケモンIDを記録
+        prePokeId = nowPokeId;
         nowPokeId = pokeId;
         // 問題がスタートしたことを記録
         startedQuestion = true;

@@ -60,4 +60,5 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 global.nowPokeId = 2;
+global.prePokeId = 1;
 global.startedQuestion = false;

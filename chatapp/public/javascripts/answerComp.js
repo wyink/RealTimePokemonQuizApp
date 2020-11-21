@@ -9,7 +9,7 @@ function answerComp(){
     const regex = /^https.+\/(\d+)\.png$/;
     const answerPokeId = (answerPokesrc.match(regex))[1];
     */
-    
+
     //ユーザー入力の解答を送信する
     const userAnswer = $('#message').val() ;
     socket.emit('sendAnswer',userAnswer);
@@ -36,7 +36,8 @@ socket.on('receiveAnswer', function (judge) {
         display: display,
         color: color,
         respondent: userName,
-        judge: judge
+        judge: judge,
+        pokeName: ""
     };
 
     // 回答の結果をみんなに反映するようにリクエスト
@@ -49,6 +50,13 @@ socket.on("updateResultEvent", function(resultData) {
     const respondent = resultData.respondent;
     const color = resultData.color;
     const display = resultData.display;
+    const judge = resultData.judge;
+    const pokeName = resultData.pokeName;
+    if(judge) {
+        // 正解のポケモンを表示する
+        $('#thread').prepend(`<p>正解は「<font color=${color}>${pokeName}</font>」です。</p>`);
+    }
     $('#thread').prepend(`<p> ${respondent}さんが<font color=${color}>${display}</font>しました。</p>`);
+
 });
 
