@@ -53,6 +53,7 @@ div {
 
 .room-message_textarea {
     width: 500px;
+    height: 50px;
 }
 
 .room-exit_button {
@@ -62,7 +63,7 @@ div {
 .ans-btn {
     margin-bottom: 35px;
     margin-left: 10px;
-    height: 49px;
+    height: 50px;
     width: 80px;
 }
 
