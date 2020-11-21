@@ -52,7 +52,7 @@ socket.on("updateResultEvent", function(resultData) {
     const display = resultData.display;
     const judge = resultData.judge;
     const pokeName = resultData.pokeName;
-    // 正解の場合
+    // 正解の場合の処理
     if(judge) {
         // 正解のポケモンを表示する
         $('#thread').prepend(`<p>正解は「<font color=${color}>${pokeName}</font>」です。</p>`);
