@@ -1,35 +1,33 @@
 <div class="container">
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/sprites/025MS.png">
+
     <div class="row">
-        <h1>Pokemon Quiz</h1>
+        <h1>ポケモン　クイズ</h1>
+        <div class="room-exit">
+            <input type="button" value="退室" class="btn common-button room-exit_button" onclick="exit();">
+        </div>
     </div>
     <div class="row">
         <form method="post" action="/">
             <div class="room-login_user">
                 <p style="font-size: larger;">挑戦者：<b>{{userName}}</b>さん</p>
-                <input id="userName" type="hidden" value="{{userName}}">
-            </div>
-            <div class="hint-area">
-                <input type="button" value="1つ目のヒント（ポケモンの属性）" id='hintbtn' class="btn btn-info common-button" onclick="hint();">
-                <input type="button" value="2つ目のヒント（最初の文字）" id='hintbtn' class="btn btn-info common-button" onclick="addHint();">
-                <div class="hint"></div>
+                {{!-- <input id="userName" type="hidden" value="{{userName}}"> --}}
             </div>
             <div id="Question">
                 <div id="QuestionSentence"><b style="font-size: large; color:rgb(46, 43, 43)">問題 : このポケモンの名前は？</b></div>
                 <div class="question">
                 </div>
             </div>
+            <div class="hint-area">
+                <div class="hint-btn-area">
+                    <input type="button" value="ヒント（ポケモンの属性）" id='hintbtn' class="btn hint-btn common-button" onclick="hint();">
+                    <input type="button" value="ヒント（文字数・最初の文字）" id='hintbtn' class="btn hint-btn common-button" onclick="addHint();">
+                </div>
+                <div class="hint"></div>
+            </div>
             <div class="room-message">
                 <textarea id="message" rows="2" class="room-message_textarea" placeholder="答えを入力しよう"></textarea>
-            </div>
-            <div class="room-submit">
-                <input type="hidden" value="投稿" class="common-button room-publish_button" onclick="_publish();">
-                <input type="hidden" value="メモ" class="common-button room-memo_button" onclick="memo();">
-            </div>
-            <div class="Answer">
-                <input id="Answer" type="button" value="解答" class="btn btn-info common-button room-exit_button" onclick="answerComp();">
-            </div>
-            <div class="room-exit">
-                <input type="button" value="退室する" class="btn btn-warnin common-button room-exit_button" onclick="exit();">
+                <input id="Answer" type="button" value="解答" class="btn ans-btn common-button" onclick="answerComp();">
             </div>
             <div id="thread">
                 <div class="question">

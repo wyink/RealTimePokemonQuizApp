@@ -33,15 +33,16 @@ socket.on('receivePokeApiData', function (data) {
     // console.log(pokeImgUrl);
 
     const questionArea = `<div class='question'><img class='poke-img' src='${pokeImgUrl}' alt='' ></div>` ;
+    const displayArea = `<div class='question'><img class='poke-display-img' src='${pokeImgUrl}' alt='' ></div>` ;
 
     //問題の表示
-    $('#Question > .question').replaceWith(questionArea);　//問題表示エリアに表示
+    $('#Question > .question').replaceWith(displayArea);　//問題表示エリアに表示
     $('#thread').prepend(questionArea);　     //スレッド部分に表示
 });
 
 function hint(){
     if(hintCheck){
-        const hintArea = `<p class="hintText">このポケモンの属性は「${genreIn}」です！</p>`;
+        const hintArea = `<p class="hintText hint-common-text">・このポケモンの属性は「${genreIn}」です！</p>`;
         $('.hint').append(hintArea);
     }
     else {
@@ -52,7 +53,7 @@ function hint(){
 
 function addHint(){
     if(addHintCheck){
-        const addHintArea = `<p class="addHintText">このポケモンは${nameLength.length}文字で、最初の文字は「${firstName}」です！</p>`;
+        const addHintArea = `<p class="addHintText hint-common-text">・このポケモンは${nameLength.length}文字で、最初の文字は「${firstName}」です！</p>`;
         $('.hint').append(addHintArea);
     }else{
         $('.addHintText').remove();
