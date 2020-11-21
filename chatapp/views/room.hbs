@@ -11,7 +11,7 @@
         <form method="post" action="/">
             <div class="room-login_user">
                 <p style="font-size: larger;">挑戦者：<b>{{userName}}</b>さん</p>
-                {{!-- <input id="userName" type="hidden" value="{{userName}}"> --}}
+                <input id="userName" type="hidden" value="{{userName}}">
             </div>
             <div id="Question">
                 <div id="QuestionSentence"><b style="font-size: large; color:rgb(46, 43, 43)">問題 : このポケモンの名前は？</b></div>
@@ -39,11 +39,11 @@
 </div>
 
 <script src="/javascripts/socket.js"></script>
+<script src="/javascripts/enter.js"></script>
 <script src="/javascripts/answerComp.js"></script>
 <script src="/javascripts/startApi.js"></script>
 <script src="/javascripts/question.js"></script>
 <script src="/javascripts/hint.js"></script>
-<script src="/javascripts/enter.js"></script>
 <script src="/javascripts/publish.js"></script>
 <script src="/javascripts/memo.js"></script>
 <script src="/javascripts/exit.js"></script>
