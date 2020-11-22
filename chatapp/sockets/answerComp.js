@@ -18,12 +18,35 @@ module.exports = function(socket, io){
             }
         };
 
+        //ユーザー入力データの確認を行う関数
+        function validateUserAnswer(userAnswer_){
+
+            //解答の前後に含まれる空白（スペース）、改行は取り除く
+            const regex1 = /^\s+|\s+$|^\r\n|\r\n$/g ;
+            if(userAnswer_.match(regex1) != null){
+                userAnswer_ = userAnswer_.replace(regex1,''); //前後の空白・改行を省く）
+            }
+            
+            //平仮名の場合はカタカナに変換する
+            const regex2 = /[\u3041-\u3096]/g; 
+            if(userAnswer_.match(regex2) != null){
+                userAnswer_ = userAnswer_.replace(regex2, ch =>
+                    String.fromCharCode(ch.charCodeAt(0) + 0x60)
+                );    
+            }
+
+            return userAnswer_;
+        }
+        
         webclient(options, (error, response, body)=>{
             const pokeInfo = JSON.parse(response.body);
 
             //入力と解答が一致するかどうかの確認
             console.log(pokeInfo.names[0].name);
             const truePokeName = pokeInfo.names[0].name;
+
+            //ユーザー入力データの確認
+            userAnswer = validateUserAnswer(userAnswer);
 
             let judge = false; //正解していた場合はtrue,不正解はfalse
             if(truePokeName == userAnswer){
