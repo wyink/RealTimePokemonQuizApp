@@ -20,4 +20,16 @@ module.exports = function (socket, io) {
         global.userState.push(newUser);
         io.sockets.emit('receiveTable',global.userState);
     });
+
+    //ユーザ名がすでにログインしているユーザに使用されているかどうかをチェック
+    socket.on('checkUserName',function(userName){
+        let isUsed = false;
+        console.log("okokokokok");
+        for(let col of global.userState){
+            if(col.USERNAME == userName){
+                isUsed = true;
+            }
+        }
+        socket.emit('receiveUserName',isUsed);
+    });
 };

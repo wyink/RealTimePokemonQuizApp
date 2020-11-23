@@ -10,7 +10,16 @@ function enter() {
         alert("ユーザ名を入力してください");
     }
     else {
-        $('form').submit();
+        //ユーザ名がすでに使用されているかチェックする
+        socket.emit('checkUserName',userName);
+        socket.on('receiveUserName',function(isUsed){
+            if(isUsed){
+                alert("すでに使用されている名前です");
+            }else{
+                $('form').submit();
+            }
+        })
+        
     }
 
 }
