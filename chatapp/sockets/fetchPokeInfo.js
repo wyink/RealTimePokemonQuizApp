@@ -70,9 +70,7 @@ module.exports = function (socket, io) {
     //ヒントを使用したログインユーザのヒント使用回数を更新
     socket.on('updateHintCount',function(userName){
         //情報を送出したユーザのデータのみ更新
-        console.log("okokokok");
         for(let col of global.userState){
-            console.log(col);
             if(col.USERNAME == userName){
                 (col.HINTCOUNT)++;
                 io.sockets.emit('receiveHintCountUpdate',col);

@@ -57,8 +57,6 @@ socket.on('receiveHintCountUpdate',function(selfState){
     */
    
    //テーブルに登録されている自分のヒント回数を更新する
-   console.log("hint" + selfState + selfState.HINTCOUNT);
-   //$('#挑戦者 > .hi').text(1);
    const userName = selfState.USERNAME;
    const hintCount = selfState.HINTCOUNT;
    $(`#${userName} > .hi`).text(hintCount);
