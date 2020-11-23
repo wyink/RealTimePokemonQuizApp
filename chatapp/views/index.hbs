@@ -14,5 +14,12 @@
         </form>
     </div>
 </div>
-
 <script src="/javascripts/index.js"></script>
+<script>
+    //windowの読み込み後にダイアログ表示を行う
+    $(function () {
+        if({{isUsed}}){
+            alert("すでに使用されている名前です");
+        }
+    });
+</script>
