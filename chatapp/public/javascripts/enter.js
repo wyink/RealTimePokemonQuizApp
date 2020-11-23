@@ -19,7 +19,7 @@ socket.on('receiveMessageEvent', function (message) {
     $('#thread').prepend('<p>' + message + '</p>');
 });
 
-//ログインしたときにテーブル取得する
+//ログインしたとき、または他ユーザが退出したときのテーブルを取得
 socket.on('receiveTable',function(userList){
     console.log(userList);
     //テーブル更新前に子要素を削除
