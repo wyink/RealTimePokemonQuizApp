@@ -6,13 +6,14 @@ const userName = $("#userName").val();
 console.log("userName", userName);
 
 // 入室メッセージイベントを送信する
-socket.emit('enterUserEvent', userName + 'さんが入室しました。');
+socket.emit('enterUserEvent', userName);
+
 // クイズが既に始まっているかのチェック
 socket.emit("checkStartedQuiz");
 
 // サーバから受信した入室メッセージを画面上に表示する
-socket.on('receiveMessageEvent', function (data) {
-    $('#thread').prepend('<p>' + data + '</p>');
+socket.on('receiveMessageEvent', function (message) {
+    $('#thread').prepend('<p>' + message + '</p>');
 });
 
 // クイズが始まっているかの結果を受け取り、対応する問題を取得する

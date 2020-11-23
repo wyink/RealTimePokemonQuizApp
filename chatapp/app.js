@@ -61,4 +61,5 @@ module.exports = app;
 
 global.nowPokeId = 2;
 global.prePokeId = 1;
+global.userState = [];
 global.startedQuestion = false;

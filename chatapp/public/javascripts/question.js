@@ -40,10 +40,36 @@ socket.on('receivePokeApiData', function (data) {
     $('#thread').prepend(questionArea);　     //スレッド部分に表示
 });
 
+//ヒント使用回数を更新する
+function hintCountUpdater(){
+    const userName = $('#userName').val();
+    socket.emit('updateHintCount',userName);
+}
+
+//テーブルの表示を更新する
+socket.on('receiveHintCountUpdate',function(selfState){
+    /*
+    selfState = {
+        USERNAME:xxx,
+        HINTCOUNT:n,
+        POINTSUM:m
+    },
+    */
+   
+   //テーブルに登録されている自分のヒント回数を更新する
+   console.log("hint" + selfState + selfState.HINTCOUNT);
+   //$('#挑戦者 > .hi').text(1);
+   const userName = selfState.USERNAME;
+   const hintCount = selfState.HINTCOUNT;
+   $(`#${userName} > .hi`).text(hintCount);
+   
+});
+
 function hint(){
     if(hintCheck){
         const hintArea = `<p class="hintText hint-common-text">・このポケモンの属性は「${genreIn}」です！</p>`;
         $('.hint').append(hintArea);
+        hintCountUpdater();
     }
     else {
         $('.hintText').remove();
@@ -55,6 +81,7 @@ function addHint(){
     if(addHintCheck){
         const addHintArea = `<p class="addHintText hint-common-text">・このポケモンは${nameLength.length}文字で、最初の文字は「${firstName}」です！</p>`;
         $('.hint').append(addHintArea);
+        hintCountUpdater();
     }else{
         $('.addHintText').remove();
     }

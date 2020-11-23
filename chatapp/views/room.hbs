@@ -47,15 +47,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Hanako</td>
-                        <td>Qiita</td>
-                        <td>@Hanaq</td>
-                    </tr>
-                    <tr>
-                        <td>Taro</td>
-                        <td>Qiita</td>
-                        <td>@TaroQ</td>
+                    <tr id="{{userName}}">
+                        <td class="un">{{userName}}</td>
+                        <td class="hi">0</td>
+                        <td class="po">0</td>
                     </tr>
                 </tbody>
             </table>
@@ -64,6 +59,7 @@
 </div>
 
 <script src="/javascripts/socket.js"></script>
+<script src="/javascripts/userState.js"></script>
 <script src="/javascripts/enter.js"></script>
 <script src="/javascripts/answerComp.js"></script>
 <script src="/javascripts/startApi.js"></script>
