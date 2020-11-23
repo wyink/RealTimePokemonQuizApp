@@ -11,10 +11,18 @@ function answerComp(){
     */
 
     //ユーザー入力の解答を送信する
+    const userName = $('#userName').val();
     const userAnswer = $('#message').val() ;
-    socket.emit('sendAnswer',userAnswer);
+    socket.emit('sendAnswer',[userName,userAnswer]);
     return false;
 }
+
+//各ユーザの総合ポイントの反映
+socket.on('receiveUpdatePointsum',function(data){
+    const userName = data.USERNAME;
+    const point = data.POINTSUM;
+    $(`#${userName} > .po`).text(point);
+})
 
 socket.on('receiveAnswer', function (judge) {
     let display = judge ? "正解" : "不正解"; //正解/不正解

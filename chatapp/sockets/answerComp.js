@@ -5,7 +5,7 @@ const webclient = require('request');
 //解答の答え合わせ
 module.exports = function(socket, io){
 
-    socket.on('sendAnswer',function(userAnswer){
+    socket.on('sendAnswer',function([userName,userAnswer]){
 
         const pokeId = global.nowPokeId;
 
@@ -51,6 +51,14 @@ module.exports = function(socket, io){
             let judge = false; //正解していた場合はtrue,不正解はfalse
             if(truePokeName == userAnswer){
                 judge = true;
+                //ポイントを加算
+                for(let col of global.userState){
+                    if(col.USERNAME == userName){
+                        (col.POINTSUM)++;
+                        io.sockets.emit('receiveUpdatePointsum',col);
+                        break;
+                    }
+                }
             }else{
                 judge = false;
             }

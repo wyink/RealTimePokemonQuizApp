@@ -8,11 +8,16 @@ module.exports = function (socket, io) {
         io.sockets.emit("receiveMessageEvent", message);
         console.log(userName + 'さんが入室しました。');
 
-        //入室したタイミングでログインユーザの各種情報を登録
-        global.userState.push({
+    });
+
+    //ログインしているユーザの情報をテーブルに反映
+    socket.on('requestTable',function(userName){
+        let newUser = {
             USERNAME:userName,
             HINTCOUNT:0,
             POINTSUM:0
-        });
+        };
+        global.userState.push(newUser);
+        io.sockets.emit('receiveTable',global.userState);
     });
 };
