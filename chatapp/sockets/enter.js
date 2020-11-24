@@ -24,7 +24,6 @@ module.exports = function (socket, io) {
     //ユーザ名がすでにログインしているユーザに使用されているかどうかをチェック
     socket.on('checkUserName',function(userName){
         let isUsed = false;
-        console.log("okokokokok");
         for(let col of global.userState){
             if(col.USERNAME == userName){
                 isUsed = true;
