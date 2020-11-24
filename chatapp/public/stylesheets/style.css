@@ -67,9 +67,6 @@ div {
     width: 80px;
 }
 
-.hint-btn-area {
-
-}
 .hint-btn {
     background-color: rgba(187, 238, 84, 0.611);
     margin-left: 25px;
@@ -93,3 +90,19 @@ div {
     height: 200px;
     margin-left: 150px;
  }
+
+/*tableに関する設定*/
+#tableParent {
+    font-size:large;
+}
+.table {
+    text-align: center;
+}
+.table thead th {
+    border-top:2px solid #e74c3c;
+    border-bottom:2px solid #f39c12;
+}
+.table td {
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+}
