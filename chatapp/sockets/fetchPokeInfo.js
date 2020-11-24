@@ -7,7 +7,7 @@ module.exports = function (socket, io) {
     socket.on('fetchPokeApiRequestEvent', function () {
         console.log("start fetch poke data");
         // pokeIdをランダムに生成
-        const pokeId = Math.floor(Math.random() * 809);
+        const pokeId = (Math.floor(Math.random() * 808))+1;
         console.log(`pokeId: ${pokeId}`);
 
         // グローバル変数に今問題にしているポケモンIDを記録
